@@ -96,6 +96,10 @@ def combined_roidb(imdb_names, training=True):
       print('Appending horizontally-flipped training examples...')
       imdb.append_flipped_images()
       print('done')
+    if cfg.TRAIN.USE_FLIPPED_VERTICALLY:
+      print('Appending vertically-flipped training examples...')
+      imdb.append_upflipped_images()
+      print('done')
 
     print('Preparing training data...')
 

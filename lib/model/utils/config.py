@@ -18,6 +18,9 @@ cfg = __C
 #
 __C.TRAIN = edict()
 
+
+
+__C.TRAIN.NUMBER_OF_CLASSES=1
 # Initial learning rate
 __C.TRAIN.LEARNING_RATE = 0.001
 
@@ -88,6 +91,10 @@ __C.TRAIN.BG_THRESH_LO = 0.1
 
 # Use horizontally-flipped images during training?
 __C.TRAIN.USE_FLIPPED = True
+
+
+# Use vertically-flipped images during training?
+__C.TRAIN.USE_FLIPPED_VERTICALLY = True
 
 # Train bounding-box regressors
 __C.TRAIN.BBOX_REG = True
