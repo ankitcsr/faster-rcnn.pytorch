@@ -124,9 +124,31 @@ class imdb(object):
       entry = {'boxes': boxes,
                'gt_overlaps': self.roidb[i]['gt_overlaps'],
                'gt_classes': self.roidb[i]['gt_classes'],
-               'flipped': True}
+               'flipped': 'horizontal'}
       self.roidb.append(entry)
-    self._image_index = self._image_index * 2
+    if(cfg.TRAIN.USE_FLIPPED_VERTICALLY == False)
+      self._image_index = self._image_index * 2
+
+
+
+  def append_upflipped_images(self):
+    num_images = self.num_images
+    heights = self._get_heights()
+    #print(num_images,"---debug--")
+    for i in range(num_images):
+      boxes = self.roidb[i]['boxes'].copy()
+      oldy1 = boxes[:, 1].copy()
+      oldy2 = boxes[:, 3].copy()
+      boxes[:, 1] = heights[i] - oldy2 - 1
+      boxes[:, 3] = heights[i] - oldy1 - 1
+#      print(i,"--debug--2")
+      assert (boxes[:, 3] >= boxes[:, 1]).all()
+      entry = {'boxes': boxes,
+               'gt_overlaps': self.roidb[i]['gt_overlaps'],
+               'gt_classes': self.roidb[i]['gt_classes'],
+               'flipped': 'vertically'}
+      self.roidb.append(entry)
+    self._image_index = self._image_index * 3
 
   # def evaluate_recall(self, candidate_boxes=None, thresholds=None,
   #                     area='all', limit=None):
