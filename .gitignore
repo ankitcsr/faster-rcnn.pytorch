@@ -172,7 +172,11 @@ aten/build/*
 
 # Bram
 plsdontbreak
-
+*.pth
+*.zip
+*.jpg
+*.xml
+data/*
 # Generated documentation
 docs/_site
 docs/gathered
